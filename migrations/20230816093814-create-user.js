@@ -10,7 +10,10 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       name: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        validate: {
+          len: [4, 6]
+        }
       },
       phone: {
         type: Sequelize.STRING

@@ -7,7 +7,7 @@ const db = require("../models/index")
 
 router.get('/user', async function(req, res, next) {
   
-  const users = await db.user.findAll()
+  const users = await db.user.findAll({offset: 6})
   console.log("database_users", users);
     return res.status(200).send(users);
 });
@@ -58,6 +58,20 @@ router.delete('/user', async function(req, res, next) {
   
  res.send("Deleted succeessfully");
 });
+
+// Creating an instance of a model
+const jane = db.user.build({ name: "Ja" });
+console.log(jane instanceof db.user); // true
+console.log(jane.name); // "Jane"
+
+// Creating async function
+async function check(){
+  let result = await jane.save();
+  console.log('Jane was saved to the database!', result);
+}
+
+check();
+
 
 
 
